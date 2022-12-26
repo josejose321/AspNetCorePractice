@@ -1,0 +1,78 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="pagetitle">
+    <h1>Pokemon<img src="http://www.pngmart.com/files/2/Pokeball-PNG-Image.png" class="bg-light" width="50" height="50"></h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active">Pokemon</li>
+        </ol>
+    </nav>
+</div>
+<div id="results">
+    
+</div>
+
+@*<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Pokemon <img src="http://www.pngmart.com/files/2/Pokeball-PNG-Image.png" class="bg-light" width="50" height="50"></h5>
+        <div id="pokemon_count">Total Pokemon:</div>
+
+        <table id="datatable"  class="table table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">Pokemon Name</th>
+                    <th scope="col">Url</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody id="table">
+            </tbody>
+        </table>
+
+    </div>
+</div>*@
+<section class="section">
+    
+    
+    @*<div class="d-flex justify-content-left">
+        <div class="input-group py-3">
+            <div class="form-outline">
+                <label class="form-label" for="form1">Search</label>
+                <input type="search" id="search" class="form-control" />
+            </div>
+        </div>
+    </div>*@
+    <div id="cards" class="row">
+    </div>
+    <div class="btn-group float-end" role="group">
+        <button id="prevBtn" class="btn btn-ghost-danger"><i class="fa fa-arrow-left"></i>Previous</button>
+        <button id="nextBtn" class="btn btn-ghost-success"><i class="fa fa-arrow-right"></i>Next</button>
+    </div>
+</section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="viewPokemonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pokemon_name">Pokemon Name</h5>
+            </div>
+            <div id="pokemon_details" class="modal-body">
+                <button class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/pokemon.js"></script>

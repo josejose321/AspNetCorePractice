@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="pagetitle">
+    <h1>CoinDesk Update</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active">Cat</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+        <div class="container " id="coindesk">
+            <div class="jumbotron">
+                <h4 id="chartname"></h4>
+                <p class="lead">
+                    <strong>
+                    Date Today:</strong><span id="time"></span></p>
+
+                <div id="body">
+
+                </div>
+                <hr class="my-4">
+            <p class="lead display-7" id="disclaimer">
+                </p>
+            </div>
+        </div>
+</section>
+
+
+
+<script src="~/js/coindesk.js"></script>

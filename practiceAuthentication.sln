@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "practiceAuthentication", "practiceAuthentication.csproj", "{CD9174D2-D533-4BAC-A9D2-C1EDFFF91D25}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD9174D2-D533-4BAC-A9D2-C1EDFFF91D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD9174D2-D533-4BAC-A9D2-C1EDFFF91D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD9174D2-D533-4BAC-A9D2-C1EDFFF91D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD9174D2-D533-4BAC-A9D2-C1EDFFF91D25}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7DE1B397-5D97-4A9B-A999-CDDD82942539}
+	EndGlobalSection
+EndGlobal
