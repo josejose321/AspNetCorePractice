@@ -11,5 +11,7 @@ namespace practiceAuthentication.Models
 
         public DbSet<Transaction>? Transactions { get; set; }
         public DbSet<Practice>? Practices { get; set; }
+
+        public DbSet<WorkExperience> WorkExperiences { get; set; }
     }
 }

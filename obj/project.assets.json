@@ -14608,19 +14608,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\GVS-IT\\.nuget\\packages\\": {}
+    "C:\\Users\\SALES\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\GVS-IT\\source\\repos\\practiceAuthentication\\practiceAuthentication.csproj",
+      "projectUniqueName": "C:\\Users\\SALES\\OneDrive\\Desktop\\practiceAuthentication\\practiceAuthentication.csproj",
       "projectName": "practiceAuthentication",
-      "projectPath": "C:\\Users\\GVS-IT\\source\\repos\\practiceAuthentication\\practiceAuthentication.csproj",
-      "packagesPath": "C:\\Users\\GVS-IT\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\GVS-IT\\source\\repos\\practiceAuthentication\\obj\\",
+      "projectPath": "C:\\Users\\SALES\\OneDrive\\Desktop\\practiceAuthentication\\practiceAuthentication.csproj",
+      "packagesPath": "C:\\Users\\SALES\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\SALES\\OneDrive\\Desktop\\practiceAuthentication\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\GVS-IT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\SALES\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -14714,7 +14714,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

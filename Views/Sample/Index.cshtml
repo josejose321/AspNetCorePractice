@@ -27,10 +27,11 @@
             @foreach (Practice practice in ViewBag.practices)
             {
                 <tr>
-                    <td> @practice.ID</td>
+                    <td id="practice_id"> @practice.ID</td>
                     <td> @practice.Firstname</td>
                     <td> @practice.Lastname</td>
                     <td> @practice.Email</td>
+
                     <td> @practice.DateToday</td> @*Date Created*@
                     <td>
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal-@practice.ID">View</button>
@@ -43,10 +44,7 @@
         </tbody>
     </table>
 </div>
-<br />
-<br />
-<br />
-<br />
+
 @Html.Partial("_editPracticeModalPartial")
 @*
 <div class="container-xxl">
@@ -106,6 +104,73 @@
         </div>
     </div>
 </div>
+
+<div id="modal_edit">
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        console.log('ready') 
+    });
+    function select(id) {
+        var url = `@Url.Action("Edit","Sample")/${id}`;
+        fetchData(url)
+
+    }
+
+
+    async function fetchData(url){
+        var response = await fetch(url)
+        .then(res =>res.json())
+        .then(data => showModal(data))
+
+        showModal()
+    }
+
+    function showModal(data)
+    {
+        $("#modal_edit").html(`
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                        <form asp-action="Edit" asp-controller="Sample" asp-route-id="${data.id}" method="post">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Firstname</label>
+                                <input type="text" name="firstname" class="form-control" value="${data.firstname}" placeholder="Enter Firstname">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Last name</label>
+                                <input type="text" name="lastname" class="form-control" value="${data.lastname}" placeholder="Enter Last Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Email</label>
+                                <input type="email" name="email" class="form-control" value="${data.email}" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Date Created</label>
+                                <input type="text" class="form-control" value="${data.dateToday}" placeholder="Enter Email" disabled>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-primary">Edit</button>
+                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        `)
+
+        $("#editModal").modal();
+    }
+</script>
 
 
 

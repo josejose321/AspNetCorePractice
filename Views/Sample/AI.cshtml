@@ -1,14 +1,16 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@model practiceAuthentication.Models.Practice;
 @{
+    Practice sample = ViewBag.sample;
 }
 <div class="pagetitle">
     <h1>AI</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
-            <li class="breadcrumb-item active">AI SAMPLE</li>
+            <li class="breadcrumb-item active">Open Ai</li>
         </ol>
     </nav>
 </div>
@@ -24,7 +26,7 @@
 
             <div class="card-body">
                 <div class="form-group py-3">
-                    <input type="text" value="Hello AI!" placeholder="Ask your question here" class="form-control form-control-lg" name="text" id="input"/>
+                <input type="text" value="Pogi ba ako?" placeholder="Ask your question here" class="form-control form-control-lg" name="input" id="input" />
                 </div>
                 <button id="submitBtn" class="btn btn-lg btn-primary float-end">Submit</button>
             </div>
@@ -45,6 +47,7 @@
     var output = document.getElementById("output");
     $(document).ready(function()
     {
+        openai_test($('#input').val());
         $("#submitBtn").on('click',function(e){
             e.preventDefault();
             
@@ -56,7 +59,7 @@
 
     
 
-    async function openai_test(input) {
+     function openai_test(input) {
 
         var url = "https://api.openai.com/v1/engines/text-davinci-002/completions";
 
@@ -64,7 +67,7 @@
         xhr.open("POST", url);
 
         xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.setRequestHeader("Authorization", "Bearer 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");
+        xhr.setRequestHeader("Authorization", "Bearer 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");
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
@@ -74,8 +77,17 @@
                 console.log(open_ai_response);
                 var message = JSON.parse(open_ai_response)
                 output.innerHTML = "";
-                //output.innerHTML = "AI: " + message.choices[0].text;
-                displayAnswer(message.choices[0].text.split(" "))
+
+                if(xhr.status == 429)
+                {
+                    swal("An Error Occured!", "Unsuficient Quota");
+                }
+                else
+                {
+                    displayAnswer(message.choices[0].text)
+                }
+
+           
                 //console.log(message.choices[0].text.split(" "))
 
                 
@@ -97,12 +109,18 @@
 
     function displayAnswer(messages)
     {
-        output.innerHTML = "AI: ";
-            messages.forEach(message => {
-                setTimeout( function(){
-                    output.innerHTML += message + " ";
-                    sleep(500)
-                },1000)
-            })
+
+        //output.innerHTML = "AI: ";
+        //    messages.forEach(message => {
+        //        setTimeout( function(){
+        //            output.innerHTML += message + " ";
+        //        },1000)
+        //    })
+
+        var typed = new Typed('#output', {
+            strings: ["AI. . . . .",messages],
+            typeSpeed: 30
+        });
+
     }
 </script>

@@ -1,21 +1,24 @@
 ﻿$(document).ready(function () {
-    $("#submitBtn").on('click', function (e) {
-        e.prevenDefault();
-        var name = $("#name").val();
+    $("#submitBtn").on('click', function () {
+        var name = $("#name").val()
+        console.log("OK")
         fetchData(`https://api.genderize.io?name=${name}`)
+        
     })
 
 
-    function fetchData(url) {
-        axios.get(url)
+    async function fetchData(url) {
+      await  axios.get(url)
             .then(function (response) {
                 // handle success
                 console.log(response.data);
-                /*                $("#coindesk").html(JSON.stringify(response.data))*/
-                $("#time").html(response.data.time.updated)
-                $("#chartname").html(response.data.chartName)
-                displayValues(response.data.bpi)
-                $("#disclaimer").html(`Desclaimer:${response.data.disclaimer}`)
+                var prob = response.data.probability * 100;
+                $("#result").html('');
+                    $("#result").html(`
+                        <br> Name:${response.data.name}
+                        <br> Gender Prediction: ${response.data.gender}
+                        <br> Gender Probability: ${prob}%
+                `);
             })
             .catch(function (error) {
                 // handle error
@@ -27,5 +30,6 @@
             .then(function () {
                 // always executed
             });
+
     }
 })

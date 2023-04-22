@@ -4,31 +4,39 @@
 @{
 }
 <div class="pagetitle">
-    <h1>CoinDesk Update</h1>
+    <h1>Gender Perediction</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
-            <li class="breadcrumb-item active">Cat</li>
+            <li class="breadcrumb-item active">Gender Prediction</li>
         </ol>
     </nav>
 </div>
 
 <section class="section">
-    <div class="container " id="coindesk">
-        <div class="jumbotron">
-            <h4 id="chartname"></h4>
-            <p class="lead">
-                <strong>
-                    Date Today:
-                </strong><span id="time"></span>
-            </p>
-
-            <div id="body">
+    <div class="container " id="">
+        <div class="card">
+            <div class="card-header">
+                Gender Perediction
             </div>
-            <hr class="my-4">
-            <p class="lead display-7" id="disclaimer">
-            </p>
-        </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                            <div class="form-group mb-3">
+                                <label label-for="text">Input Name</label>
+                                <input type="text" name="name" id="name" class="form-control" />
+                            </div>
+                            <button type="button" id="submitBtn" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div id="result">
+
+                </div>
+            </div>
+         </div>
     </div>
 </section>
 

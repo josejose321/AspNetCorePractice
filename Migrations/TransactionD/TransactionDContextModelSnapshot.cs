@@ -34,12 +34,15 @@ namespace practiceAuthentication.Migrations.TransactionD
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Firstname")
+                        .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Lastname")
+                        .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ID");
@@ -73,6 +76,46 @@ namespace practiceAuthentication.Migrations.TransactionD
                     b.HasKey("TransactionId");
 
                     b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("practiceAuthentication.Models.WorkExperience", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Designation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PracticeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PracticeId");
+
+                    b.ToTable("WorkExperiences");
+                });
+
+            modelBuilder.Entity("practiceAuthentication.Models.WorkExperience", b =>
+                {
+                    b.HasOne("practiceAuthentication.Models.Practice", "user")
+                        .WithMany("WorkExperiences")
+                        .HasForeignKey("PracticeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("user");
+                });
+
+            modelBuilder.Entity("practiceAuthentication.Models.Practice", b =>
+                {
+                    b.Navigation("WorkExperiences");
                 });
 #pragma warning restore 612, 618
         }

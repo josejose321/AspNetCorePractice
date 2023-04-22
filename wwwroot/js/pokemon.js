@@ -9,8 +9,8 @@ $(document).ready(function () {
     console.log("Ok Ready")
     getPokemon(current = 'https://pokeapi.co/api/v2/pokemon')
 })
-function getPokemon(url) {
-    axios.get(url)
+async function getPokemon(url) {
+    await axios.get(url)
         .then(function (response) {
             // handle success
             console.log(response.data);
@@ -24,8 +24,8 @@ function getPokemon(url) {
             // always executed
         });
 }
-function getPokemonDetails(url) {
-    axios
+ function getPokemonDetails(url) {
+     axios
         .get(url)
         .then(function (response) {
             // handle success
@@ -45,6 +45,9 @@ function displayPokemonDetails(data) {
     let types = getTypes(data.types);
     let moves = getMoves(data.moves)
     let stats = getStats(data.stats)
+
+    
+
     $("#pokemon_details").empty();
 
     $("#pokemon_name").html(`<strong>${data.name} Details</strong>`)
@@ -53,9 +56,9 @@ function displayPokemonDetails(data) {
     $("#pokemon_details").append(
         `
                 <div class="card">
-                          <img src="${data.sprites.front_default}" class="rounded" alt="Italian Trulli">
+                          <img src="${data.sprites.front_default}" class="rounded border" alt="Italian Trulli">
                   <div class="card-body">
-                        No#:   ${data.id} <br/>
+                        No#:    ${data.id} <br/>
                         Name:   ${data.name} <br/>
                         Height: ${data.height} <br/>
                         Weight: ${data.weight} <br/>
@@ -139,6 +142,8 @@ function displayPokemon(data) {
     $("#table").empty();
     $("#cards").empty();
     $("#pokemon_count").val("Total Pokemon:" + data.results)
+
+   
     //$("#table").dataTable();
     var datatable = "";
     var card = "";
@@ -152,12 +157,14 @@ function displayPokemon(data) {
         //    `<td>` + pokemon.url + `</td>` +
         //    `<td>` + `<a href="${pokemon.url}" class="btn btn-primary">Show</a>` + `</td>` +
         //`</tr>`;
-        /*image =loadPokeImg(pokemon.url);*/
+        //let image = loadPokeImg(pokemon.url);
+        //console.log(pokemon.url)
+        //let pokemon_img = loadPokeImg(pokemon.url)
         card +=
             `
                 <div class="col-md-3">
                     <div class="card" style="width: 15rem;">
-                            <img class="card-img-top float-center bg-info" src="http://www.pngmart.com/files/2/Pokeball-PNG-Image.png" alt="No Photo">
+                            <img class="card-img-top float-center bg-info" src="https://www.pngmart.com/files/2/Pokeball-PNG-Image.png" alt="No Photo">
                         <div class="card-body bg-light">
                             <h5 class="card-title text-center">${pokemon.name}</h5>
                             <center>
@@ -171,7 +178,7 @@ function displayPokemon(data) {
     //$("#table").append(datatable);
     $("#cards").append(card);
 }
-function loadPokeImg(url) {
+  function loadPokeImg(url) {
     axios
         .get(url)
         .then(function (response) {
@@ -186,5 +193,5 @@ function loadPokeImg(url) {
         .then(function () {
             // always executed
         });
-    return "";
+    return  "";
 }

@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using practiceAuthentication.Models;
+using practiceAuthentication.Request;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Security.Cryptography.Xml;
 using System.Security.Policy;
@@ -21,9 +24,18 @@ namespace practiceAuthentication.Controllers
             //string[] str_ouput = { "Jose", "Vargas", "Evasco" };
             //ViewBag.str_output = str_ouput;
 
-
-            ViewBag.practices = await _context.Practices.ToListAsync();
+            ViewBag.practices = await _context.Practices
+                .ToListAsync();
             return View();
+        }
+
+        public IActionResult Try()
+        {
+            var wExp = _context
+                .WorkExperiences
+                .ToList();
+
+            return Ok(wExp);
         }
 
         // GET: SampleController/Details/5
@@ -40,10 +52,11 @@ namespace practiceAuthentication.Controllers
 
         // POST: SampleController/Create
         [HttpPost]
-        public ActionResult Create(string firstname, string lastname, string email)
+        public ActionResult Create(PracticeRequest request)
         {
 
-            if(_context.Practices.Where(p => p.Email == email).Count() > 0)
+
+            if(_context.Practices.Where(p => p.Email == request.Email).Count() > 0)
             {
                 TempData["error"] = "Email exist";
                 return RedirectToAction(nameof(Index));
@@ -52,9 +65,9 @@ namespace practiceAuthentication.Controllers
             {
                Practice practice = new Practice()
                {
-                    Firstname = firstname,
-                    Lastname = lastname,
-                    Email = email,
+                    Firstname = request.Firstname,
+                    Lastname = request.Lastname,
+                    Email = request.Email,
                     DateToday = DateTime.Now,
                };
 
@@ -67,6 +80,18 @@ namespace practiceAuthentication.Controllers
 
         public IActionResult AI()
         {
+
+            ViewBag.sample = new Practice()
+            {
+                Firstname = "Jose",
+                Lastname = "Evasco",
+                Email = "jose.evascoii1150@gmail.com",
+                DateToday = DateTime.Now,
+                ID = 1
+            };
+
+
+
             return View();
         }
         //public IActionResult askAi(string input)
@@ -97,13 +122,16 @@ namespace practiceAuthentication.Controllers
         public IActionResult Edit(int? id)
         {
             var practice = _context.Practices.Where(p => p.ID == id).FirstOrDefault();
-            ViewBag.practice = practice;
-            return PartialView("_editPracticeModalPartial");
+            if(practice == null)
+            {
+                return NotFound();
+            }
+            return Ok(practice);
         }
 
         // POST: SampleController/Edit/5
         [HttpPost]
-        public ActionResult Edit(int? id, string firstname, string lastname, string email)
+        public ActionResult Edit(int? id, PracticeRequest request)
         {
             var practice = _context.Practices.FirstOrDefault(p => p.ID == id);
 
@@ -112,9 +140,9 @@ namespace practiceAuthentication.Controllers
                 return NotFound();
             }
 
-            practice.Firstname = firstname;
-            practice.Lastname = lastname;
-            practice.Email = email;
+            practice.Firstname = request.Firstname;
+            practice.Lastname = request.Lastname;
+            practice.Email = request.Email;
             _context.SaveChanges();
 
             TempData["success"] = "Edit Success";
@@ -145,6 +173,10 @@ namespace practiceAuthentication.Controllers
             return View();
         }
         public IActionResult CoinDesk()
+        {
+            return View();
+        }
+        public IActionResult Gender()
         {
             return View();
         }
