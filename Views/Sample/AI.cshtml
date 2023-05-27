@@ -25,10 +25,12 @@
             </div>
 
             <div class="card-body">
+                <form id="ai_form" novalidate>
                 <div class="form-group py-3">
-                <input type="text" value="Pogi ba ako?" placeholder="Ask your question here" class="form-control form-control-lg" name="input" id="input" />
+                    <input type="text" value="Pogi ba ako?" placeholder="Ask your question here" class="form-control form-control-lg" name="input" id="input" />
                 </div>
-                <button id="submitBtn" class="btn btn-lg btn-primary float-end">Submit</button>
+                <button type"submit" id="submitBtn" class="btn btn-lg btn-primary float-end">Submit</button>
+                </form>
             </div>
 
 
@@ -48,9 +50,8 @@
     $(document).ready(function()
     {
         openai_test($('#input').val());
-        $("#submitBtn").on('click',function(e){
+        $("#ai_form").on('submit', function (e) {
             e.preventDefault();
-            
             openai_test($('#input').val());
         })
     });
@@ -61,49 +62,38 @@
 
      function openai_test(input) {
 
-        var url = "https://api.openai.com/v1/engines/text-davinci-002/completions";
+        const url = "https://api.openai.com/v1/engines/text-davinci-002/completions";
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", url);
-
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.setRequestHeader("Authorization", "Bearer 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");
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                console.log(xhr.status);
-                console.log(xhr.responseText);
-                open_ai_response = xhr.responseText;
-                console.log(open_ai_response);
-                var message = JSON.parse(open_ai_response)
-                output.innerHTML = "";
-
-                if(xhr.status == 429)
-                {
-                    swal("An Error Occured!", "Unsuficient Quota");
-                }
-                else
-                {
-                    displayAnswer(message.choices[0].text)
-                }
-
-           
-                //console.log(message.choices[0].text.split(" "))
-
-                
+        axios.post(url, {
+            prompt: input,
+            temperature: 0.7,
+            max_tokens: 256,
+            top_p: 1,
+            frequency_penalty: 0.75,
+            presence_penalty: 0
+        }, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer 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"
             }
-        };
-
-        var data = `{
-        "prompt": "${input}",
-        "temperature": 0.7,
-        "max_tokens": 256,
-        "top_p": 1,
-        "frequency_penalty": 0.75,
-        "presence_penalty": 0
-      }`;
-
-      xhr.send(data)
+        })
+            .then(function (response) {
+                console.log(response.status);
+                console.log(response.data);
+                const message = response.data;
+                output.innerHTML = "";
+                displayAnswer(message.choices[0].text);
+                //console.log(message.choices[0].text.split(" "))
+            })
+            .catch(function (error) {
+                if(error.response.status === 429){
+                    //swal("An Error Occurred!", "Insufficient Quota");
+                    displayAnswer("Insufficient Quota. Putangina mo di na kita masasagot hayop ka")
+                }
+                else {
+                    displayAnswer("Putangina mo nag error na")
+                }
+            });
         
     }
 

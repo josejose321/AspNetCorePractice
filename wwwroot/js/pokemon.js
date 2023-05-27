@@ -32,9 +32,12 @@ async function getPokemon(url) {
             console.log(response.data);
             displayPokemonDetails(response.data);
         })
-        .catch(function (error) {
+         .catch(function (error) {
+             if (error.response.status === 429) {
+                 swal("An Error Occurred!", "Insufficient Quota");
+             }
             // handle error
-            console.log(error);
+            //console.log(error);
         })
         .then(function () {
             // always executed
