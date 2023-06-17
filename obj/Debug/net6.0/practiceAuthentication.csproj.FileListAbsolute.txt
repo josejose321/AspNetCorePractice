@@ -886,3 +886,4 @@ C:\Users\josee\Documents\GitHub\practiceAuthentication\obj\Debug\net6.0\refint\p
 C:\Users\josee\Documents\GitHub\practiceAuthentication\obj\Debug\net6.0\practiceAuthentication.pdb
 C:\Users\josee\Documents\GitHub\practiceAuthentication\obj\Debug\net6.0\practiceAuthentication.genruntimeconfig.cache
 C:\Users\josee\Documents\GitHub\practiceAuthentication\obj\Debug\net6.0\ref\practiceAuthentication.dll
+C:\Users\josee\Documents\GitHub\practiceAuthentication\bin\Debug\net6.0\AlpineIntegration.dll

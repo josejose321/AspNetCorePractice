@@ -80,44 +80,9 @@ namespace practiceAuthentication.Controllers
 
         public IActionResult AI()
         {
-
-            ViewBag.sample = new Practice()
-            {
-                Firstname = "Jose",
-                Lastname = "Evasco",
-                Email = "jose.evascoii1150@gmail.com",
-                DateToday = DateTime.Now,
-                ID = 1
-            };
-
-
-
             return View();
         }
-        //public IActionResult askAi(string input)
-        //{
-        //    string URL = "";
-        //    string urlParamaters = "";
-        //    HttpClient client = new HttpClient();
-        //    client.BaseAddress = new Uri(URL);
 
-        //    // Add an Accept header for JSON format.
-        //    client.DefaultRequestHeaders.Accept.Add(
-        //    new MediaTypeWithQualityHeaderValue("application/json"));
-
-        //    // List data response.
-        //    HttpResponseMessage response = client.GetAsync(urlParamaters).Result;  // Blocking call! Program will wait here until a response is received or a timeout occurs.
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        // Parse the response body.
-        //       return response.Content.ReadAsAsync<IEnumerable<DataObject>>().Result;  //Make sure to add a reference to System.Net.Http.Formatting.dll
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
-        //    }
-
-        //}
 
         public IActionResult Edit(int? id)
         {

@@ -27,7 +27,7 @@
             <div class="card-body">
                 <form id="ai_form" novalidate>
                 <div class="form-group py-3">
-                    <input type="text" value="Pogi ba ako?" placeholder="Ask your question here" class="form-control form-control-lg" name="input" id="input" />
+                    <input type="text" value="Pogi ba ako? Yes or no only please" placeholder="Ask your question here" class="form-control form-control-lg" name="input" id="input" />
                 </div>
                 <button type"submit" id="submitBtn" class="btn btn-lg btn-primary float-end">Submit</button>
                 </form>
@@ -46,17 +46,40 @@
 
 
 <script>
+    var input = $("#input")
     var output = document.getElementById("output");
+    let currentIndex = 0;
+
+    const statements = [
+        "Gwapo ba ako? yes or no only please.",
+        "Magiging kami ba ng crush ko? oo hindi lang ang sagot.",
+        "Gusto nya kaya ako?",
+        "Magchachat kaya sya sakin ngayong araw?",
+        "Crush nya pa kaya ako? feeling ko hindi na.",
+        "Tingin mo, magkakatuluyan kaya kami ni crush?",
+        "Sana maging kami. HAHHAHAHAH mag oo ka na lang OPENAI. Please. sabihin mo 'Magiging kami ng crush ko!'"
+    ];
+    let open_ai_response;
+
+    
     $(document).ready(function()
     {
         openai_test($('#input').val());
         $("#ai_form").on('submit', function (e) {
             e.preventDefault();
-            openai_test($('#input').val());
+            openai_test(input.val());
+            showConfetti()
+            
+
         })
     });
+    function getNextStatement() {
+        const statement = statements[currentIndex];
+        currentIndex = (currentIndex + 1) % statements.length;
+        return statement;
+    }
 
-    let open_ai_response;
+    
 
     
 
@@ -111,6 +134,15 @@
             strings: ["AI. . . . .",messages],
             typeSpeed: 30
         });
+        setTimeout(function(){
+            input.val(getNextStatement())
+        },3000)
+    }
+    function showConfetti() {
+        const jsConfetti = new JSConfetti();
 
+        jsConfetti.addConfetti({
+            emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸']
+        })
     }
 </script>

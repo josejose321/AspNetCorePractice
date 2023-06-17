@@ -7,10 +7,10 @@ namespace practiceAuthentication.Request
 
 
 
-        public String Firstname { get; set; }
+        public String? Firstname { get; set; }
 
-        public String Lastname { get; set; }
+        public String? Lastname { get; set; }
 
-        public String Email { get; set; }
+        public String? Email { get; set; }
     }
 }

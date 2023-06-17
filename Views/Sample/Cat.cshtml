@@ -53,7 +53,7 @@
 </section>
 
 
-<script>
+@*<script>
     $(document).ready(function () {
         let url = "https://catfact.ninja/fact"
         console.log("Ok Ready")
@@ -61,6 +61,7 @@
         $("#catForm").on("submit", function (e) {
             e.preventDefault();
             fetchData(url);
+            showConfetti()
         })
 
 
@@ -87,6 +88,13 @@
                 typeSpeed: 20
             });
         }
+        function showConfetti() {
+            const jsConfetti = new JSConfetti();
+
+                jsConfetti.addConfetti({
+                    emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸']
+                })
+        }
     })
-</script>
-@*<script src="~/js/cat.js"></script>*@
+</script>*@
+<script src="~/js/cat.js" asp-append-version="true"></script>

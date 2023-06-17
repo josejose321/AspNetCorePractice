@@ -5,6 +5,7 @@
     $("#catForm").on("submit", function (e) {
         e.preventDefault();
         fetchData(url);
+        showConfetti()
     })
 
 
@@ -28,7 +29,14 @@
     function displayCatFact(fact) {
         var typed = new Typed('#fact', {
             strings: ["Fact:...", fact],
-            typeSpeed: 30
+            typeSpeed: 20
         });
+    }
+    function showConfetti() {
+        const jsConfetti = new JSConfetti();
+
+        jsConfetti.addConfetti({
+            emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸']
+        })
     }
 })

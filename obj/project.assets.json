@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "AlpineIntegration/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/AlpineIntegration.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/AlpineIntegration.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Azure.Core/1.6.0": {
         "type": "package",
         "dependencies": {
@@ -4017,6 +4029,19 @@
     }
   },
   "libraries": {
+    "AlpineIntegration/1.0.0": {
+      "sha512": "w0M/0JI2xrtt/xAs/wcDTxoeLuaJdnc4g+sHW5R6CKPNJjyF1JZ6QCLkIk2WisFOqrCY81UgkF6aiuStYLTYsw==",
+      "type": "package",
+      "path": "alpineintegration/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "alpineintegration.1.0.0.nupkg.sha512",
+        "alpineintegration.nuspec",
+        "icon.png",
+        "lib/netcoreapp3.0/AlpineIntegration.dll"
+      ]
+    },
     "Azure.Core/1.6.0": {
       "sha512": "kI4m2NsODPOrxo0OoKjk6B3ADbdovhDQIEmI4039upjjZKRaewVLx/Uz4DfRa/NtnIRZQPUALe1yvdHWAoRt4w==",
       "type": "package",
@@ -14594,6 +14619,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "AlpineIntegration >= 1.0.0",
       "KendoUICore >= 2022.3.1109",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.10",
       "Microsoft.AspNetCore.Identity.UI >= 6.0.10",
@@ -14646,6 +14672,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "AlpineIntegration": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
           "KendoUICore": {
             "target": "Package",
             "version": "[2022.3.1109, )"
